@@ -1,0 +1,703 @@
+/* ===== NEGÓCIO FANTASMA LP STYLES ===== */
+
+@keyframes nf-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.nf-page {
+  font-family: "Montserrat", sans-serif;
+  background-color: #0d0d0f;
+  color: #f5f5f5;
+  overflow-x: hidden;
+}
+
+/* ===== DESKTOP CONTAINER ===== */
+.nf-container {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+  .nf-container {
+    max-width: 1100px;
+  }
+}
+
+/* 2-col grid for desktop */
+.nf-grid-2 {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@media (min-width: 900px) {
+  .nf-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .nf-grid-2.nf-grid-reverse > *:first-child {
+    order: 2;
+  }
+  .nf-grid-2.nf-grid-reverse > *:last-child {
+    order: 1;
+  }
+}
+
+/* 3-col grid for desktop */
+@media (min-width: 900px) {
+  .nf-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .nf-grid-4-desktop {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+}
+
+/* Typography */
+.nf-title {
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.nf-gold {
+  color: #d4af37;
+}
+
+.nf-section-label {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #d4af37;
+}
+
+/* ===== CTA BUTTON ===== */
+.nf-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #d4af37 0%, #f0d060 50%, #d4af37 100%);
+  background-size: 200% 200%;
+  color: #0d0d0f;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35), 0 0 0 0 rgba(212, 175, 55, 0.4);
+  text-decoration: none;
+  width: 100%;
+  max-width: 420px;
+}
+
+.nf-btn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-20deg);
+  animation: btnShine 3s infinite;
+}
+
+@keyframes btnShine {
+  0% { left: -60%; opacity: 0; }
+  10% { opacity: 1; }
+  40% { left: 120%; opacity: 0; }
+  100% { left: 120%; opacity: 0; }
+}
+
+.nf-btn:hover {
+  background-position: right center;
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.55), 0 0 0 4px rgba(212, 175, 55, 0.15);
+}
+
+.nf-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+@keyframes btnPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35), 0 0 0 0 rgba(212, 175, 55, 0.4); }
+  50% { box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35), 0 0 0 10px rgba(212, 175, 55, 0); }
+}
+
+.nf-btn-pulse {
+  animation: btnPulse 2s infinite;
+}
+
+/* ===== DIVIDERS ===== */
+.nf-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4af37 30%, #d4af37 70%, transparent);
+  opacity: 0.3;
+}
+
+/* ===== IMAGE PLACEHOLDERS ===== */
+.nf-img-placeholder {
+  background: linear-gradient(135deg, #1a1a1d 0%, #252528 100%);
+  border: 1px dashed rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: rgba(212, 175, 55, 0.5);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.nf-img-placeholder svg {
+  opacity: 0.4;
+}
+
+/* ===== VIDEO PLACEHOLDER ===== */
+.nf-video-placeholder {
+  background: linear-gradient(135deg, #0d0d0f 0%, #1a1a1d 100%);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+
+.nf-video-placeholder::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+}
+
+.nf-play-btn {
+  width: 72px;
+  height: 72px;
+  background: rgba(212, 175, 55, 0.15);
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  animation: playPulse 2s infinite;
+}
+
+@keyframes playPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.3); }
+  50% { box-shadow: 0 0 0 16px rgba(212, 175, 55, 0); }
+}
+
+.nf-video-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(212, 175, 55, 0.5);
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== SECTIONS ===== */
+.nf-section {
+  padding: 2.5rem 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .nf-section {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .nf-section {
+    padding: 3.5rem 3rem;
+  }
+}
+
+/* ===== CARDS ===== */
+.nf-card {
+  background: #1a1a1d;
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.nf-card-gold {
+  background: linear-gradient(135deg, #1a1a1d, #252528);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+/* ===== SCROLL ANIMATIONS ===== */
+.nf-fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.nf-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nf-fade-in {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.nf-fade-in.visible {
+  opacity: 1;
+}
+
+/* staggered children */
+.nf-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.nf-stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
+.nf-stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.15s; }
+.nf-stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.25s; }
+.nf-stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.35s; }
+.nf-stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.45s; }
+.nf-stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.55s; }
+
+/* blur-in animation (replaces framer-motion) */
+@keyframes nf-blur-in {
+  from { filter: blur(4px); opacity: 0; }
+  to { filter: blur(0px); opacity: 1; }
+}
+
+.nf-blur-in {
+  opacity: 0;
+}
+
+.nf-blur-in.visible {
+  animation: nf-blur-in 0.5s ease-in-out 0.2s forwards;
+}
+
+/* ===== TRUST BADGES ===== */
+.nf-trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #b0b0b0;
+}
+
+.nf-trust-badge svg {
+  color: #d4af37;
+  flex-shrink: 0;
+}
+
+/* ===== TESTIMONIAL CARDS ===== */
+.nf-testimonial {
+  background: #1a1a1d;
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 10px;
+  padding: 1.5rem;
+  position: relative;
+}
+
+.nf-testimonial::before {
+  content: "\201C";
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  font-size: 4rem;
+  color: rgba(212, 175, 55, 0.2);
+  font-family: Georgia, serif;
+  line-height: 1;
+}
+
+/* ===== FAQ ACCORDION ===== */
+.nf-faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nf-faq-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.25rem 0;
+  background: none;
+  border: none;
+  color: #f5f5f5;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: left;
+  cursor: pointer;
+  gap: 1rem;
+}
+
+.nf-faq-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: #d4af37;
+  transition: transform 0.3s ease;
+}
+
+.nf-faq-icon.open {
+  transform: rotate(45deg);
+}
+
+.nf-faq-answer {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #b0b0b0;
+  padding-bottom: 0;
+}
+
+.nf-faq-answer.open {
+  max-height: 400px;
+  padding-bottom: 1.25rem;
+}
+
+/* ===== OFFER BOX ===== */
+.nf-offer-box {
+  background: linear-gradient(160deg, #1a1a1d 0%, #0d0d0f 100%);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.nf-offer-box::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  right: -20%;
+  width: 60%;
+  height: 120%;
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ===== GUARANTEE BADGE ===== */
+.nf-guarantee {
+  background: #1a1a1d;
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ===== GHOST ICON ACCENT ===== */
+.nf-ghost-accent {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+}
+
+/* ===== MODULE LIST ===== */
+.nf-module-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nf-module-num {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 2rem;
+  color: rgba(212, 175, 55, 0.3);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 2.5rem;
+}
+
+/* ===== HORIZONTAL SCROLL TESTIMONIALS (mobile) ===== */
+.nf-testimonials-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.nf-testimonials-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.nf-testimonials-scroll .nf-testimonial {
+  flex-shrink: 0;
+  width: 85vw;
+  max-width: 340px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .nf-testimonials-scroll {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow-x: visible;
+  }
+
+  .nf-testimonials-scroll .nf-testimonial {
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* ===== ICON PILLS ===== */
+.nf-icon-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #b0b0b0;
+}
+
+.nf-icon-pill .icon-wrap {
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(212, 175, 55, 0.05);
+  color: #d4af37;
+}
+
+/* ===== HERO DESKTOP ===== */
+.nf-hero-vsl-desktop {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .nf-hero-inner {
+    max-width: 1100px !important;
+    margin: 0 auto;
+    padding: 4rem 3rem 3rem !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .nf-hero-left {
+    text-align: left !important;
+  }
+
+  .nf-hero-left > div:first-child {
+    text-align: left !important;
+  }
+
+  .nf-hero-left > div:first-child > div {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+
+  .nf-hero-left .nf-fade-up {
+    text-align: left !important;
+  }
+
+  .nf-hero-left p {
+    text-align: left !important;
+  }
+
+  .nf-hero-left .nf-trust-badges {
+    align-items: flex-start !important;
+  }
+
+  .nf-hero-left > div[style] {
+    justify-content: flex-start !important;
+  }
+
+  .nf-hero-vsl-mobile {
+    display: none;
+  }
+
+  .nf-hero-vsl-desktop {
+    display: block;
+  }
+
+  .nf-hero-right {
+    width: 100%;
+  }
+}
+
+/* ===== BONUS GRID ===== */
+.nf-bonus-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .nf-bonus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ===== TESTIMONIALS DESKTOP ===== */
+@media (min-width: 900px) {
+  .nf-testimonials-scroll {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow-x: visible;
+    gap: 1.5rem;
+  }
+
+  .nf-testimonials-scroll .nf-testimonial {
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* ===== OFFER/GARANTIA DESKTOP MAX WIDTH ===== */
+@media (min-width: 900px) {
+  .nf-offer-inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
+
+/* ===== PRICE DISPLAY ===== */
+.nf-price-crossed {
+  font-size: 1rem;
+  color: #b0b0b0;
+  text-decoration: line-through;
+}
+
+.nf-price-main {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 4rem;
+  color: #d4af37;
+  line-height: 1;
+}
+
+.nf-price-currency {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.8rem;
+  vertical-align: super;
+  color: #d4af37;
+}
+
+/* ===== CIRCULAR TESTIMONIALS ===== */
+.nf-circ-testimonials {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+@media (min-width: 700px) {
+  .nf-circ-testimonials {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.nf-circ-images {
+  position: relative;
+  width: 60%;
+  aspect-ratio: 3 / 4;
+  perspective: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.nf-circ-images img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.4);
+  transition: all 0.8s cubic-bezier(0.4, 2, 0.3, 1);
+}
+
+.nf-circ-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(212,175,55,0.3);
+  background: rgba(212,175,55,0.08);
+  color: #d4af37;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.nf-circ-nav-btn:hover {
+  background: #d4af37;
+  color: #0d0d0f;
+}
+
+.nf-circ-dot {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(212,175,55,0.25);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0;
+}
+
+.nf-circ-dot.active {
+  width: 20px !important;
+  background: #d4af37;
+}
+
+.nf-quote-transition {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ===== RESET BASICS ===== */
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; padding: 0; }
+h1, h2, h3, p { margin: 0; }
+img { max-width: 100%; }
+button { font-family: inherit; }
