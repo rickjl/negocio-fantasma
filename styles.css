@@ -299,6 +299,8 @@ body,
 .nf-stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.35s; }
 .nf-stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.45s; }
 .nf-stagger.visible > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 0.55s; }
+/* do 7º em diante (ex: FAQ tem 10 itens) — sem isso ficam opacity:0 pra sempre */
+.nf-stagger.visible > *:nth-child(n+7) { opacity: 1; transform: none; transition-delay: 0.65s; }
 
 /* blur-in animation (replaces framer-motion) */
 @keyframes nf-blur-in {

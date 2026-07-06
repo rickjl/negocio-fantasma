@@ -386,7 +386,8 @@
 
     <!-- CircularTestimonials -->
     <div id="nf-circ-container" class="nf-fade-up" style="max-width:680px;margin:0 auto;">
-      <div class="nf-circ-images" style="position:relative;height:200px;display:flex;align-items:flex-end;justify-content:center;margin-bottom:2rem;perspective:800px;"></div>
+      <!-- quadro retrato na proporção exata das fotos (941x1672) pra não cortar -->
+      <div class="nf-circ-images" style="position:relative;width:min(300px,75vw);aspect-ratio:941/1672;height:auto;margin:0 auto 2rem;perspective:800px;"></div>
 
       <div style="text-align:center;margin-bottom:1.5rem;">
         <p class="nf-circ-quote" style="font-size:0.95rem;line-height:1.8;color:#c8c8c8;font-style:italic;margin-bottom:1.25rem;min-height:80px;transition:opacity 0.3s,transform 0.3s;"></p>
