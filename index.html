@@ -8,6 +8,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://cdn.vslplay.com" />
+  <link rel="preconnect" href="https://api.vslplay.com" />
+  <link rel="preconnect" href="https://www.youtube.com" />
+  <link rel="preload" as="script" href="https://cdn.vslplay.com/player.js" />
 </head>
 <body>
 
@@ -39,12 +43,7 @@
 
       <!-- VSL mobile -->
       <div class="nf-hero-vsl-mobile">
-        <div class="nf-video-placeholder" style="margin-bottom:1.75rem;aspect-ratio:16/9;">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.9;">
-            <polygon points="18,12 38,24 18,36" fill="#d4af37"/>
-          </svg>
-          <span class="nf-video-label">VSL — Vídeo de Vendas</span>
-        </div>
+        <div id="nf-vsl-slot-mobile" style="margin-bottom:1.75rem;aspect-ratio:16/9;"></div>
       </div>
 
       <p style="font-size:0.875rem;line-height:1.7;color:#b0b0b0;text-align:center;margin-bottom:1.75rem;">
@@ -69,12 +68,7 @@
 
     <!-- RIGHT — VSL desktop -->
     <div class="nf-hero-right nf-hero-vsl-desktop">
-      <div class="nf-video-placeholder" style="aspect-ratio:16/9;width:100%;">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="opacity:0.9;">
-          <polygon points="18,12 38,24 18,36" fill="#d4af37"/>
-        </svg>
-        <span class="nf-video-label">VSL — Vídeo de Vendas</span>
-      </div>
+      <div id="nf-vsl-slot-desktop" style="aspect-ratio:16/9;width:100%;"></div>
     </div>
   </div>
 </section>
@@ -329,7 +323,7 @@
           <span style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:rgba(212,175,55,0.3);line-height:1;">01</span>
           <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#d4af37;">Bônus</span>
         </div>
-        <img src="images/img_bonus1.png" alt="Kit IA Pronta" style="width:100%;max-width:320px;height:200px;object-fit:contain;display:block;margin:0 auto 1rem;" />
+        <img src="images/img6.png" alt="Kit IA Pronta" style="width:100%;max-width:320px;height:200px;object-fit:contain;display:block;margin:0 auto 1rem;" />
         <h3 style="font-size:1rem;font-weight:700;color:#f5f5f5;text-align:center;margin-bottom:0.75rem;">Kit IA Pronta</h3>
         <p style="font-size:0.85rem;line-height:1.7;color:#c8c8c8;margin-bottom:1.25rem;">
           Mais de cinquenta prompts testados e organizados por função: copy de vendas, headlines, roteiros de criativo, descrições de produto, e-mails. Você abre, cola na ferramenta de IA que preferir e sai com o material pronto em minutos, sem precisar pensar no que escrever.
@@ -346,7 +340,7 @@
           <span style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:rgba(212,175,55,0.3);line-height:1;">02</span>
           <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#d4af37;">Bônus</span>
         </div>
-        <img src="images/img_bonus2.png" alt="Guia do Produto Invisível" style="width:100%;max-width:320px;height:200px;object-fit:contain;display:block;margin:0 auto 1rem;" />
+        <img src="images/img7.png" alt="Guia do Produto Invisível" style="width:100%;max-width:320px;height:200px;object-fit:contain;display:block;margin:0 auto 1rem;" />
         <h3 style="font-size:1rem;font-weight:700;color:#f5f5f5;text-align:center;margin-bottom:0.75rem;">Guia do Produto Invisível</h3>
         <p style="font-size:0.85rem;line-height:1.7;color:#c8c8c8;margin-bottom:1.25rem;">
           Um passo a passo para escolher o nicho certo e definir o produto que a IA consegue construir por você do zero. Inclui lista de nichos com alta demanda e baixa necessidade de exposição, e o processo de validação antes de investir qualquer centavo.
@@ -732,5 +726,17 @@
 </section>
 
 <script src="script.js"></script>
+<script>
+  // VSL Play: monta o player só no slot visível (mobile OU desktop, breakpoint 900px
+  // igual ao styles.css) — duas instâncias do mesmo player na página duplicariam
+  // carregamento e métricas de play.
+  (function () {
+    var slot = document.getElementById(
+      window.matchMedia('(min-width: 900px)').matches ? 'nf-vsl-slot-desktop' : 'nf-vsl-slot-mobile'
+    );
+    if (slot) slot.innerHTML = '<vslplay-player id="8b0fe86a-0f0c-48ca-b9dd-34c20e95ab10"></vslplay-player>';
+  })();
+</script>
+<script src="https://cdn.vslplay.com/player.js" defer></script>
 </body>
 </html>
