@@ -5,6 +5,9 @@
   50% { opacity: 0; }
 }
 
+/* o HTML não usa wrapper .nf-page — aplicar direto no body, senão o texto
+   herda preto/Times e o fundo fica branco */
+body,
 .nf-page {
   font-family: "Montserrat", sans-serif;
   background-color: #0d0d0f;
@@ -19,7 +22,17 @@
 }
 
 @media (min-width: 900px) {
+  /* coluna de leitura confortável pra seções de texto corrido; seções com
+     grid (módulos, bônus, depoimentos, método) continuam largas */
   .nf-container {
+    max-width: 800px;
+  }
+
+  .nf-container:has(.nf-grid-2),
+  .nf-container:has(.nf-grid-3),
+  .nf-container:has(.nf-bonus-grid),
+  .nf-container:has(.nf-testimonials-scroll),
+  .nf-container:has(.nf-circ-testimonials) {
     max-width: 1100px;
   }
 }
@@ -503,6 +516,27 @@
   color: #d4af37;
 }
 
+/* desktop: pill vira linha (ícone à esquerda, texto alinhado à esquerda) —
+   coluna centralizada é layout de mobile */
+@media (min-width: 900px) {
+  .nf-icon-pill {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 1.25rem;
+    row-gap: 4px;
+    align-items: start;
+    text-align: left;
+  }
+
+  .nf-icon-pill .icon-wrap {
+    grid-row: 1 / span 2;
+  }
+
+  .nf-icon-pill p {
+    text-align: left !important;
+  }
+}
+
 /* ===== HERO DESKTOP ===== */
 .nf-hero-vsl-desktop {
   display: none;
@@ -648,8 +682,8 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center bottom;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 16px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.5);
   background: rgba(0,0,0,0.4);
@@ -693,6 +727,13 @@
 
 .nf-quote-transition {
   transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ===== STATS GRID (2x2 mobile → 4 col desktop) ===== */
+@media (min-width: 900px) {
+  .nf-stats-grid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
 }
 
 /* ===== RESET BASICS ===== */
